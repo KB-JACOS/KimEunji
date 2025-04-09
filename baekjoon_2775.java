@@ -3,33 +3,26 @@ import java.lang.*;
 import java.io.*;
 
 public class baekjoon_2775 {
-    static int[][] dp;
+    static int[][] dp = new int[15][15];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int T = Integer.parseInt(br.readLine());
-        int k=1;
-        int n=1;
-        for(int t=0; t<T; t++){
-            k = Integer.parseInt(br.readLine());
-            n = Integer.parseInt(br.readLine());
-            
-            dp = new int[k+1][15];
-            for(int i=1; i<=14; i++){
-                dp[0][i]=i;
-            }
-            apartment(k,n);
+        
+        for(int i=1; i<=14; i++){
+            dp[0][i]=i;
         }
-    }
-    public static void apartment(int k, int n){
-        for(int a=1; a<=k; a++){
-            for(int c=1; c<=n; c++){
-                for(int b=1; b<=c; b++){
-                    dp[a][c]+=dp[a-1][b];
-                }
+
+        for(int a=1; a<=14; a++){
+            for(int b=1; b<=14; b++){
+                dp[a][b]=dp[a-1][b]+dp[a][b-1];
             }
         }
         
-        System.out.println(dp[k][n]);
+        for(int t=0; t<T; t++){
+            int k = Integer.parseInt(br.readLine());
+            int n = Integer.parseInt(br.readLine());
+            System.out.println(dp[k][n]);
+        }
     }
 }
