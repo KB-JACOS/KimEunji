@@ -3,7 +3,7 @@ import java.io.*;
 // "셋째 자리 버림"은 avg[i] ≤ 값 < avg[i]+0.001 범위를 만족하는지 확인
 // 1e-9는 부동소수점 오차로 인해 발생할 수 있는 비교 오류를 방지하기 위한 오차 허용 범위
 public class BOJ_1206 {
-    public static void main(String[] args) thrㅎows IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
