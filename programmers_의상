@@ -1,0 +1,54 @@
+import java.util.*;
+class Programmers_의상 {
+    public int solution(String[][] clothes) {
+        
+        //초기화
+        HashMap<String, Integer> map = new HashMap<>();
+        for(String[] cloth : clothes){
+            map.put(cloth[1], 0);
+        }
+        
+        //갯수 넣기
+        for(String[] cloth : clothes){
+            int cur = map.get(cloth[1]);
+            map.replace(cloth[1], cur, cur+1);
+        }
+        
+        //리팩토링
+        //map.put(map[1], map.getOrDefault(map[1], 0) + 1);
+        
+        //시간초과
+//        int answer = 0;
+//         //배열로
+//         int size = map.size();
+//         int[] array = new int[size];
+        
+//         int idx=0;
+//         for(String s : map.keySet()){
+//             array[idx] = map.get(s);
+//             idx++;
+//         }
+//         System.out.println(map);
+//         System.out.println(Arrays.toString(array));
+        
+//         //조합 만들기 > 비트마스킹으로
+//         for(int i=1; i< 1<<size; i++){
+//             int multi = 1;
+//             for(int j=0; j<size; j++){
+//                 int curIdx = i & (1<<j);
+//                 if(curIdx > 0){
+//                     multi *= array[j];
+//                 }
+//             }
+//             answer += multi;
+//         }
+        
+        //조합 공식
+        int answer = 1;
+        for(int value : map.values()){
+            answer *= (value+1);
+        }
+        
+        return answer-1; //1의 경우
+    }
+}
