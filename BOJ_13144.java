@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class BOJ_13144 {
+    public static void main(String[] args) throws IOException {
+        // input 저장
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[N];
+        int[] count = new int[100001];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=0; i<N; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        // two pointer
+        int left = 0, right = 0;
+        long sum = 1;
+        count[arr[left]]++;
+
+        while(left<=right && right<N-1){
+
+            // 이동
+            right ++;
+            count[arr[right]]++;
+
+            while(count[arr[right]] >= 2) {
+                count[arr[left]]--;
+                left ++;
+            }
+
+            sum += (right - left + 1);
+        }
+
+        System.out.println(sum);
+    }
+}
